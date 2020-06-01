@@ -57,7 +57,7 @@ public class UserLoginController {
                String resultJson = JSONObject.toJSONString(resoultOfUser);
                responseToJs.response(resultJson,response);
            }else{
-               //提示
+               //提
                resoultOfUser.setMsg("登录失败，密码错误");
                //输出
                String resultJson = JSONObject.toJSONString(resoultOfUser);
