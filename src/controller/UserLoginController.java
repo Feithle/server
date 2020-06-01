@@ -54,19 +54,21 @@ public class UserLoginController {
                //提示
                resoultOfUser.setMsg("登录成功");
                //输出
-               String resultJson = JSONObject.toJSONString(user);
+               String resultJson = JSONObject.toJSONString(resoultOfUser);
                responseToJs.response(resultJson,response);
            }else{
                //提示
                resoultOfUser.setMsg("登录失败，密码错误");
                //输出
-               responseToJs.response(resoultOfUser.toString(),response);
+               String resultJson = JSONObject.toJSONString(resoultOfUser);
+               responseToJs.response(resultJson,response);
            }
        }else {
            //提示
            resoultOfUser.setMsg("错误，用户不存在");
            //输出
-           responseToJs.response(resoultOfUser.toString(),response);
+           String resultJson = JSONObject.toJSONString(resoultOfUser);
+           responseToJs.response(resultJson,response);
        }
     }
 }
