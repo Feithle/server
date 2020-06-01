@@ -20,9 +20,12 @@ function regist(){
 		}
 	}		
 	);
-} 
+}
 
-
+/**
+ * 注册后把注册成功后的信息填充到登录框
+ * @constructor
+ */
 function Loadusermessage(){
 	$.ajax(
 	{
