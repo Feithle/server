@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>省、市、区级联</title>
+
+<style type="text/css">
+*{margin:0; padding:0;list-style-type:none;}
+</style>
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery.inputbox.js" type="text/javascript"></script>
+<script src="js/jquery.ganged.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="jquery.inputbox.css" type="text/css" />
+
+<script type="text/javascript">
+$(function(){
+	var data = ['010000:北京','020000:江苏','030000:浙江','010100:北京','020100:南京','020200:苏州','020300:无锡','020400:常州','030100:杭州','030200:嘉兴','030300:绍兴','010101:海淀区','010102:崇文区','020101:玄武区','020102:江宁区','020201:吴中区','020202:工业园区'];
+	$('#test1').ganged({'data': data, 'width': 100, 'height': 30});
+	$('#test2').ganged({'data': data});
+})
+</script>
+
+</head>
+
+<body>
+
+<div id="test1" style="float:left; margin-right:50px;">
+	<input type="hidden" class="province" value="010000"/>
+	<input type="hidden" class="city" value="010100"/>
+	<input type="hidden" class="area" value="010101"/>
+	<div name="province" type="selectbox" style="z-index:2;"><div class="opts"></div></div>
+	<div name="city" type="selectbox" style="z-index:2;"><div class="opts"></div></div>
+	<div name="area" type="selectbox" style="z-index:2;"><div class="opts"></div></div>
+</div>
+
+<div id="test2" style="float:left; margin-right:50px;">
+	<input type="hidden" class="province" value="010000"/>
+	<input type="hidden" class="city" value="010100"/>
+	<input type="hidden" class="area" value="010101"/>
+	<div name="province" type="selectbox" style="z-index:1;"><div class="opts"></div></div>
+	<div name="city" type="selectbox" style="z-index:1;"><div class="opts"></div></div>
+	<div name="area" type="selectbox" style="z-index:1;"><div class="opts"></div></div>
+</div>
+
+</body>
+</html>

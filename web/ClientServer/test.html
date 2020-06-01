@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+  </head>
+  
+ <body>
+<input type="file" name="pic" multiple id="myinput">
+<button onclick="uploadFile()">上传</button>
+<script>
+    function uploadFile(){
+        var fd = new FormData();
+        fd.append("pic", document.getElementById("myinput").files[0]);
+        console.log(fd.has("pic"))//验证一下是否有名为pic的文件元素
+         $.ajax({
+         	 headers: {
+       			 Accept: "multipart/form-data"
+   			 },
+             url:"http://localhost:8080/server/servlet/UserUpdate",
+             type:"post",
+             data:fd,
+             dataType:"json",
+             processData:false,
+             contentType:false,
+             success:function(res){
+                 console.log(res);
+             },
+         })
+    }
+
+</script>
+  </body>
+</html>
