@@ -37,8 +37,8 @@ function Loadusermessage(){
 		},
 		success:function(msg){
 			var resultOfUser=JSON.parse(msg)
-			//测试输出
-			console.log(resultOfUser);
+			document.getElementById("user_email").value=msg.email;
+			document.getElementById("user_password").value=msg.password;
 			//填充输入框
 
 		},
@@ -66,7 +66,7 @@ function login(){
 			},
 			success:function(msg){
 				console.log("登录成功,返回登录信息");
-				var result=JSON.parse(msg);
+				var result=JSON.parse(JSON.stringify(msg));
 				console.log(result);
 			}
 		}

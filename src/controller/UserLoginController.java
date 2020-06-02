@@ -30,18 +30,15 @@ public class UserLoginController {
     public void fillInputTag(HttpServletRequest request,HttpServletResponse response) throws IOException {
         //获取
         User user=userService.fillInputTag(request);
-        System.out.println("获取");
         //包装
         ResoultOfUser resoultOfUser=new ResoultOfUser();
         if(user !=null){
             resoultOfUser.setSuccess(true);
             resoultOfUser.setUser(user);
-            System.out.println("包装");
         }
         //输出
         String resultJson = JSONObject.toJSONString(user);
         responseToJs.response(resultJson,response);
-        System.out.println("输出");
     }
 
     @RequestMapping("/login.do")
@@ -57,6 +54,8 @@ public class UserLoginController {
                //输出
                String resultJson = JSONObject.toJSONString(resoultOfUser);
                responseToJs.response(resultJson,response);
+               //测试
+               System.out.println(resultJson);
            }else{
                //提示
                resoultOfUser.setMsg("登录失败，密码错误");
