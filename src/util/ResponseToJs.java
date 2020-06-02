@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 public class ResponseToJs {
 
     public  void  response(String msg, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(msg));
         out.flush();

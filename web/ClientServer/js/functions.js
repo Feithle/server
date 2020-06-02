@@ -68,6 +68,7 @@ function login(){
 				console.log("登录成功,返回登录信息");
 				var result=JSON.parse(JSON.stringify(msg));
 				console.log(result);
+				console.log(result.user);
 			}
 		}
 	);
