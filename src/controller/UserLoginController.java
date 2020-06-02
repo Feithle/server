@@ -40,7 +40,8 @@ public class UserLoginController {
         }
         //输出
         String resultJson = JSONObject.toJSONString(user);
-        responseToJs.response(resoultOfUser.toString(),response);
+        responseToJs.response(resultJson,response);
+        System.out.println("输出");
     }
 
     @RequestMapping("/login.do")

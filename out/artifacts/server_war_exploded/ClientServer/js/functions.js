@@ -20,9 +20,12 @@ function regist(){
 		}
 	}		
 	);
-} 
+}
 
-
+/**
+ * 注册后把注册成功后的信息填充到登录框
+ * @constructor
+ */
 function Loadusermessage(){
 	$.ajax(
 	{
@@ -34,6 +37,8 @@ function Loadusermessage(){
 		},
 		success:function(msg){
 			var resultOfUser=JSON.parse(msg)
+			//测试输出
+			console.log(resultOfUser);
 			//填充输入框
 
 		},

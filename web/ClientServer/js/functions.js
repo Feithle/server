@@ -37,6 +37,8 @@ function Loadusermessage(){
 		},
 		success:function(msg){
 			var resultOfUser=JSON.parse(msg)
+			//测试输出
+			console.log(resultOfUser);
 			//填充输入框
 
 		},
