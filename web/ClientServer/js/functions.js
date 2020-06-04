@@ -65,10 +65,9 @@ function login(){
 
 			},
 			success:function(msg){
-				console.log("登录成功,返回登录信息");
 				var result=JSON.parse(JSON.stringify(msg));
-				console.log(result);
-				console.log(result.user);
+				//填充到登录状态栏
+				//...
 			}
 		}
 	);

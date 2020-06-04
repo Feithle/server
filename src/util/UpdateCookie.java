@@ -16,13 +16,13 @@ public class UpdateCookie {
         cookie_email = new Cookie("email_lqy", user.getEmail());
         cookie_password = new Cookie("password_lqy", user.getPassword());
         cookie_user_id = new Cookie("user_add_id_lqy", String.valueOf(user.getUser_id()));
-
+        
         // 默认关闭本次会话,cookie关闭。
         try {
             response.addCookie(cookie_email);
             response.addCookie(cookie_password);
             response.addCookie(cookie_user_id);
-            
+
             flag=true;
         }catch (Exception e){
             e.printStackTrace();
