@@ -27,7 +27,8 @@ public class UserLoginController {
      * @param request
      */
     @RequestMapping("/fillInputTag.do")
-    public void fillInputTag(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void fillInputTag(HttpServletRequest request,HttpServletResponse response){
+
         //获取
         User user=userService.fillInputTag(request);
         //包装
@@ -38,7 +39,12 @@ public class UserLoginController {
         }
         //输出
         String resultJson = JSONObject.toJSONString(user);
-        responseToJs.response(resultJson,response);
+        try {
+            responseToJs.response(resultJson,response);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @RequestMapping("/login.do")
@@ -61,14 +67,42 @@ public class UserLoginController {
                resoultOfUser.setMsg("登录失败，密码错误");
                //输出
                String resultJson = JSONObject.toJSONString(resoultOfUser);
-               responseToJs.response(resultJson,response);
+               try {
+                   responseToJs.response(resultJson,response);
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
            }
        }else {
            //提示
            resoultOfUser.setMsg("错误，用户不存在");
            //输出
            String resultJson = JSONObject.toJSONString(resoultOfUser);
-           responseToJs.response(resultJson,response);
+           try {
+               responseToJs.response(resultJson,response);
+           }catch (Exception e){
+               e.printStackTrace();
+           }
        }
+    }
+
+    @RequestMapping("/loadStatue.do")
+    public void loadStatue(HttpServletRequest request,HttpServletResponse response){
+        User user=userService.fillInputTag(request);
+        ResoultOfUser resoultOfUser=new ResoultOfUser();
+        resoultOfUser.setMsg("读取了浏览器中的cookie");
+        if (user!=null){//不为空则读取成功
+            resoultOfUser.setSuccess(true);
+            resoultOfUser.setUser(user);
+        }else{
+            resoultOfUser.setSuccess(false);
+        }
+        //输出
+        String resultJson = JSONObject.toJSONString(resoultOfUser);
+        try {
+            responseToJs.response(resultJson,response);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -13,7 +13,7 @@ public interface UserService {
     public User getUserByEmail(String email);
     //更新cookie
     public void updateCookies(User user, HttpServletResponse response);
-    //读取cookie
+    //读取cookie,返回一个user
     public User fillInputTag( HttpServletRequest request);
     //登录用户
     public ResoultOfUser UserLoginVertify(User user);

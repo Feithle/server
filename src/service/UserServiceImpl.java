@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public void updateCookies(User user , HttpServletResponse response) {
-        if(updateCookie.insertCookies(user,response)){
+        if(updateCookie.insertCookiesForLogin(user,response)){
             System.out.println("cookie更新完成");
         }
     }

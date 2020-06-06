@@ -66,8 +66,53 @@ function login(){
 			},
 			success:function(msg){
 				var result=JSON.parse(JSON.stringify(msg));
-				//填充到登录状态栏
-				//...
+				console.log(result)
+				//提示登录成功结果
+				alert(result.msg)
+				//点击提示里的确定按钮后跳转到网站的首页
+				window.location.replace("index.html")
+				//首页加载时顺便加载一下登录状态栏
+			}
+		}
+	);
+}
+
+/**
+ * 首页和其他页面需要加载登录状态时使用该方法
+ */
+function useCookieToChangePage(){
+
+	$.ajax(
+		{
+			type:"POST",
+			dataTyp:"JSON",
+			async:false,
+			url:'http://localhost:8080/server/UserOp/loadStatue.do',
+			data:{
+				"method":"cookieChangePage",
+			},
+			success:function(msg){
+				var jsonResult=JSON.parse(JSON.stringify(msg));//解析一下从servlet中传过来的JSON
+				console.log(jsonResult);
+				if(jsonResult.email==""||jsonResult.email==null){
+					console.log("后台的回复是user,但user中的email是空的")
+				}else{
+					document.getElementById("loginstatue_before").style.display="none";
+					var afterdiv=document.getElementById("loginstatue_after");
+					afterdiv.style.display="block";
+					var emailspan=document.getElementById("useremai_span");
+					emailspan.innerHTML=jsonResult.email;
+					var img=document.getElementById("pathofavatar");//获得img标签
+					if(jsonResult.path_avatar==null||jsonResult.path_avatar==""){
+						img.src="avatar/avatar_deafault.jpg";
+					}else{
+						img.src=jsonResult.path_avatar;
+					}
+					console.log("---end-----");
+				}
+			},
+			error: function(e) {
+				console.log("返回错误");
 			}
 		}
 	);
