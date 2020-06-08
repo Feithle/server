@@ -54,7 +54,7 @@ public class UserLoginController {
        if (resoultOfUser.success){
            if (resoultOfUser.getUser().getPassword().equals(user.getPassword())){
                //更新cookie
-               userService.updateCookies(user,response);
+               userService.updateCookies(user,response);//
                //提示
                resoultOfUser.setMsg("登录成功");
                //输出

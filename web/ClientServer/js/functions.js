@@ -92,21 +92,21 @@ function useCookieToChangePage(){
 				"method":"cookieChangePage",
 			},
 			success:function(msg){
-				var jsonResult=JSON.parse(JSON.stringify(msg));//解析一下从servlet中传过来的JSON
-				console.log(jsonResult);
-				if(jsonResult.email==""||jsonResult.email==null){
+				//var jsonResult=JSON.parse(JSON.stringify(msg));//解析一下从servlet中传过来的JSON
+				var jsonResult=JSON.parse(msg);//解析一下从servlet中传过来的JSON
+				if(jsonResult.user.email==""||jsonResult.user.email==null){
 					console.log("后台的回复是user,但user中的email是空的")
 				}else{
 					document.getElementById("loginstatue_before").style.display="none";
 					var afterdiv=document.getElementById("loginstatue_after");
 					afterdiv.style.display="block";
 					var emailspan=document.getElementById("useremai_span");
-					emailspan.innerHTML=jsonResult.email;
+					emailspan.innerHTML=jsonResult.user.email;
 					var img=document.getElementById("pathofavatar");//获得img标签
-					if(jsonResult.path_avatar==null||jsonResult.path_avatar==""){
+					if(jsonResult.user.path_avatar==null||jsonResult.user.path_avatar==""){
 						img.src="avatar/avatar_deafault.jpg";
 					}else{
-						img.src=jsonResult.path_avatar;
+						img.src=jsonResult.user.path_avatar;
 					}
 					console.log("---end-----");
 				}
