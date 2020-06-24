@@ -137,35 +137,38 @@ function saveUpdate(){//更新用户设置
 				"password":document.getElementById("password").value,
 			},
 			success:function(msg){
-				console.log("update方法被调用了 2");
+				var result=JSON.parse(msg);
+				console.log("文字上传方法被调用了 ，"+result.msg);
 			},
 			error: function(e) {
-				console.log("返回错误")
+				console.log("文字上传方法返回错误")
 			}
 		}
 	);
-	$("#saveSettings").click(function () {
-		var file =this.files[0];
-		var data =new FormData();
-		data.append("img",file);
-		console.log(file);
-		$.ajax(//更新文字信息
-			{
-				type:"POST",
-				dataTyp:"text",
-				url:'http://localhost:8080/server/UserOp/updateAvatar.do',
-				contentType: false,
-				//默认文件类型application/x-www-form-urlencoded  设置之后multipart/form-data
-				processData: false,
-				// 默认情况下会对发送的数据转化为对象 不需要转化的信息
-				data:data,
-				success:function(msg){
-					console.log("update方法被调用了 2");
-				},
-				error: function(e) {
-					console.log("返回错误")
-				}
-			}
-		);
-	})
 }
+$("#saveSettings").click(function () {
+
+	var file =this.files
+	var data =new FormData();
+	data.append("img",file);
+	console.log(file);
+	console.log("点击方法2");
+	$.ajax(//更新文字信息
+		{
+			type:"POST",
+			dataTyp:"text",
+			url:'http://localhost:8080/server/UserOp/updateAvatar.do',
+			contentType: false,
+			//默认文件类型application/x-www-form-urlencoded  设置之后multipart/form-data
+			processData: false,
+			// 默认情况下会对发送的数据转化为对象 不需要转化的信息
+			data:data,
+			success:function(msg){
+				console.log("头像上传方法被调用了");
+			},
+			error: function(e) {
+				console.log("头像上传方法返回错误")
+			}
+		}
+	);
+})
