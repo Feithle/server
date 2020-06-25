@@ -152,7 +152,6 @@ $("#saveSettings").click(function () {
 	var data =new FormData();
 	data.append("img",file);
 	console.log(file);
-	console.log("点击方法2");
 	$.ajax(//更新文字信息
 		{
 			type:"POST",

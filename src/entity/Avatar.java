@@ -1,9 +1,20 @@
 package entity;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Avatar {
     private int userid;
     private String name;
     private String path;
+    private HttpServletRequest request;
+
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
 
     public String getName() {
         return name;

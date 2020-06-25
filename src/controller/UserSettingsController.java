@@ -1,11 +1,14 @@
 package controller;
 
 import com.alibaba.fastjson.JSONObject;
+import entity.Avatar;
 import entity.ResoultOfUser;
 import entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import service.ImgService;
 import service.UserService;
+import util.ReadCookie;
 import util.ResponseToJs;
 
 import javax.annotation.Resource;
@@ -20,6 +23,10 @@ public class UserSettingsController {
     private UserService userService;
     @Resource
     private ResponseToJs responseToJs;
+    @Resource
+    private ImgService imgService;
+    @Resource
+    private ReadCookie readCookie;
 
     @RequestMapping("/updateMessage.do")
     public void updateMessage(User user ,HttpServletResponse response ){
@@ -40,9 +47,22 @@ public class UserSettingsController {
 
     @RequestMapping("/updateAvatar.do")
     public void updateAvatar(HttpServletRequest request){
-        System.out.println("头像上传功能:");
-        //先测试是否获取到图片
-        //获取用户id
+
+        Avatar avatar=new Avatar();
+        int userid=readCookie.getCoolieInBrowser(request).getUser_id();
+
+        //给avatar添加两个必要的参数
+        avatar.setRequest(request);//request
+        avatar.setUserid(userid);//userid
+
+        //保存avatar
+        String path=imgService.saveAvatar(avatar);
+
+        //输出path
+        System.out.println("头像保存路径： "+path);
+
+
+        // 获取用户id
         //保存图并返回图片存储路径
 
 
