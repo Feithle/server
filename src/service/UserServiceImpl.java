@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
-     * TODO 根据email返回完整用户
      * @param email
      * @return
      */
@@ -42,9 +41,7 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    /**
-     * TODO 更新浏览器cookie
-     */
+
     @Override
     public void updateCookies(User user , HttpServletResponse response) {
         if(updateCookie.insertCookiesForLogin(user,response)){

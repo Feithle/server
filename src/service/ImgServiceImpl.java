@@ -15,7 +15,6 @@ import java.util.List;
 public class ImgServiceImpl implements ImgService{
     @Override
     public String saveAvatar(Avatar avatar) {
-
         String path_avatar="";//图片全路径
         String path="";//图片所在文件
         DiskFileItemFactory diskFileItemFactory=new DiskFileItemFactory();//创建解析类的实例
@@ -33,7 +32,6 @@ public class ImgServiceImpl implements ImgService{
                     System.out.println("这是第"+(i+1)+"个item");
                     ServletContext servletContext=avatar.getRequest().getServletContext();
                     path="C:/Users/Administrator/Desktop/EclipseWorkSpace/server/src/main/WebContent/ClientServer/avatar";
-                    //path="src/avatar";
                     System.out.println("文件路径： "+path);
                     String imgName=fileItem.getName();
                     System.out.println("图片名称： "+(avatar.getUserid()+"_"+imgName));
@@ -51,7 +49,6 @@ public class ImgServiceImpl implements ImgService{
                 }
             }
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return path_avatar;

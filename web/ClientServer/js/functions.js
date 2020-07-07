@@ -119,11 +119,10 @@ function useCookieToChangePage(){
 }
 
 /***
- * 用户信息修改与图片上传
- * 全部使用jquery
+ * 使用js把文本信息传入后台
+ * 实现用户信息更新
  */
 function saveUpdate(){//更新用户设置
-	//使用jquery获取图片
 
 	$.ajax(//更新文字信息
 		{
@@ -146,28 +145,3 @@ function saveUpdate(){//更新用户设置
 		}
 	);
 }
-$("#saveSettings").click(function () {
-
-	var file =this.files
-	var data =new FormData();
-	data.append("img",file);
-	console.log(file);
-	$.ajax(//更新文字信息
-		{
-			type:"POST",
-			dataTyp:"text",
-			url:'http://localhost:8080/server/UserOp/updateAvatar.do',
-			contentType: false,
-			//默认文件类型application/x-www-form-urlencoded  设置之后multipart/form-data
-			processData: false,
-			// 默认情况下会对发送的数据转化为对象 不需要转化的信息
-			data:data,
-			success:function(msg){
-				console.log("头像上传方法被调用了");
-			},
-			error: function(e) {
-				console.log("头像上传方法返回错误")
-			}
-		}
-	);
-})

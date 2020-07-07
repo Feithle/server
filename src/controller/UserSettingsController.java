@@ -47,24 +47,18 @@ public class UserSettingsController {
 
     @RequestMapping("/updateAvatar.do")
     public void updateAvatar(HttpServletRequest request){
-
+        //请求到达controller
+        System.out.println("图片保存请求到达controller");
         Avatar avatar=new Avatar();
         int userid=readCookie.getCoolieInBrowser(request).getUser_id();
-
         //给avatar添加两个必要的参数
         avatar.setRequest(request);//request
         avatar.setUserid(userid);//userid
-
         //保存avatar
         String path=imgService.saveAvatar(avatar);
-
         //输出path
         System.out.println("头像保存路径： "+path);
-
-
         // 获取用户id
         //保存图并返回图片存储路径
-
-
     }
 }

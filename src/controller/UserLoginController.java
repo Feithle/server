@@ -22,13 +22,8 @@ public class UserLoginController {
     private UserService userService;
     @Resource
     private ResponseToJs responseToJs;
-    /**
-     * TODO 读取cookie中保存的user信息，返回到js
-     * @param request
-     */
     @RequestMapping("/fillInputTag.do")
     public void fillInputTag(HttpServletRequest request,HttpServletResponse response){
-
         //获取
         User user=userService.fillInputTag(request);
         //包装
@@ -44,13 +39,11 @@ public class UserLoginController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     @RequestMapping("/login.do")
     public void login(User user,HttpServletResponse response) throws IOException {
        ResoultOfUser resoultOfUser=userService.UserLoginVertify(user);
-
        if (resoultOfUser.success){
            if (resoultOfUser.getUser().getPassword().equals(user.getPassword())){
                //更新cookie

@@ -147,11 +147,11 @@ function saveUpdate(){//更新用户设置
 	);
 }
 $("#saveSettings").click(function () {
+	console.log("点击--保存");
+	var files =this.files;
+	var data =new FormData()
+	data.append('upfile',files[0],files[0].name);
 
-	var file =this.files
-	var data =new FormData();
-	data.append("img",file);
-	console.log(file);
 	$.ajax(//更新文字信息
 		{
 			type:"POST",
