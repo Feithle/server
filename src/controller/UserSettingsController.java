@@ -48,7 +48,6 @@ public class UserSettingsController {
     @RequestMapping("/updateAvatar.do")
     public void updateAvatar(HttpServletRequest request){
         //请求到达controller
-        System.out.println("图片保存请求到达controller");
         Avatar avatar=new Avatar();
         int userid=readCookie.getCoolieInBrowser(request).getUser_id();
         //给avatar添加两个必要的参数

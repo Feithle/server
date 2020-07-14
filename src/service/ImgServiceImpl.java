@@ -1,57 +1,72 @@
 package service;
 
+import com.oreilly.servlet.multipart.FilePart;
+import com.oreilly.servlet.multipart.MultipartParser;
+import com.oreilly.servlet.multipart.ParamPart;
+import com.oreilly.servlet.multipart.Part;
 import entity.Avatar;
 import entity.Picture;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.ServletContext;
 import java.io.File;
-import java.util.List;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ImgServiceImpl implements ImgService{
     @Override
     public String saveAvatar(Avatar avatar) {
-        String path_avatar="";//图片全路径
-        String path="";//图片所在文件
-        DiskFileItemFactory diskFileItemFactory=new DiskFileItemFactory();//创建解析类的实例
-        System.out.println("创建解析类的实例");
-        ServletFileUpload servletFileUpload =new ServletFileUpload(diskFileItemFactory);
-        servletFileUpload.setFileSizeMax(1024*99990);
-        System.out.println("ok1");
+        //以map形式保存数据 key对应保存的是获取界面上的name名称 value保存的是获取界面上的name对应的值
+        Map<String, String> map = new HashMap<String, String>();
+        Part part = null;
         try {
-            List<FileItem> items=servletFileUpload.
-                    parseRequest(avatar.getRequest());//预设多个表单接收实例
-            System.out.println("ok2 "+items.size());
-            for (int i = 0; i < items.size(); i++) {
-                FileItem fileItem=items.get(i);
-                if(!fileItem.isFormField()) {//找到文件的item
-                    System.out.println("这是第"+(i+1)+"个item");
-                    ServletContext servletContext=avatar.getRequest().getServletContext();
-                    path="C:/Users/Administrator/Desktop/EclipseWorkSpace/server/src/main/WebContent/ClientServer/avatar";
-                    System.out.println("文件路径： "+path);
-                    String imgName=fileItem.getName();
-                    System.out.println("图片名称： "+(avatar.getUserid()+"_"+imgName));
-                    path_avatar=path+"/"+(avatar.getUserid()+"_"+imgName);
-                    System.out.println("图片全路径： "+path_avatar);
-                    File file=new File(path_avatar);//为图片开辟一个文件空间
-                    if(!file.exists()) {
-                        fileItem.write(file);//文件作为文件流的参数
-                        /*
-                         * 文件路径写入数据库
-                         */
+            MultipartParser mrequest = new MultipartParser(avatar.getRequest(), 1280 * 720);
+            mrequest.setEncoding("utf-8");
+            //遍历所有的part组
+            while ((part = mrequest.readNextPart()) != null) {
+                if (part.isFile()) {  //判断是否是文件
+                    FilePart filepart = (FilePart) part;//转化成文件组
+                    String fileName = filepart.getFileName();//得到文件名
+                    if (fileName != null && fileName.length() > 0) {
+                        // 取得扩展名
+                        String fileExtName = fileName.substring(
+                                fileName.lastIndexOf(".") + 1).toLowerCase();
+                        // 只上传图片  //判断图片上传的格式是否符合 后缀名是否有效
+                        if (fileExtName.equalsIgnoreCase("jpeg")
+                                || fileExtName.equalsIgnoreCase("png")
+                                || fileExtName.equalsIgnoreCase("jpg")
+                                || fileExtName.equalsIgnoreCase("gif")
+                                || fileExtName.equalsIgnoreCase("ico")
+                                || fileExtName.equalsIgnoreCase("bmp")
+                                || fileExtName.equalsIgnoreCase("flv")
+                                || fileExtName.equalsIgnoreCase("mp4")
+                                || fileExtName.equalsIgnoreCase("mp3")) {
+                            /*String newFileName = new Date().getTime() + "."+ fileExtName;//重新改文件名  文件名+扩展名 */
+                            String newFileName = new Date().getTime() + fileName;//不改图片名字
+                            String newPath =this.getClass().getResource("/").getPath().split("out")[0]+"web/ClientServer/avatar/"+ newFileName; //文件处理文件上传的路径
+                            File newFile = new File(newPath);
+                            filepart.writeTo(newFile);  //将文件真正写入到对应的文件夹中
+                            map.put(filepart.getName(), newFileName);//把文件信息保存到map中
+                            map.put("newFile", newFile.toString());
+                        } else {
+                            map.put("geshi", "geshi");
+                            continue;
+                        }// 说明上传的不是图片
+                    } else {
+                        map.put("yes", "yes");
+                        continue; // 说明没有选择上传图片
                     }
-                }else {
-                    System.out.println("第"+(i+1)+"个item啥也没有");
+                } else if (part.isParam()) {  //判断是否是参数
+                    ParamPart paramPart = (ParamPart) part;
+                    map.put(paramPart.getName(), paramPart.getStringValue());
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return path_avatar;
+        return map.get("newFile");
     }
 
     @Override

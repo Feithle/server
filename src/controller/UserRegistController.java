@@ -23,4 +23,5 @@ public class UserRegistController {
         User user=userService.getUserByEmail(email);
         userService.updateCookies(user,response);
     }
+
 }

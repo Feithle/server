@@ -9,7 +9,7 @@
 
 3.  将登录信息更新到登录状态栏√
 
-## 头像以及用户信息的更新 6/8
+## 头像以及用户信息的更新 
         不登录就打不开
 1. 文字信息的上传
 
@@ -26,9 +26,12 @@
    
    在网上找一个完整的用js上传图片的示例
    
-   1.js部分：
+   1.html部分：
    
-   
+   ```html
+   <form enctype="multipart/form-data" action="/server/UserOp/updateAvatar.do" method="post">
+   </form>
+   ```
    
    2.文件保存部分：
    
@@ -109,7 +112,11 @@
    
    ```
    
+   3.路径设置
    
+   ```java
+   String newPath =this.getClass().getResource("/").getPath().split("out")[0]+"web/ClientServer/avatar/"+ newFileName;
+   ```
 
 
 3. 信息修改使用jquery(尝试一下)
@@ -118,7 +125,9 @@
 3. 请用户确认要修改的信息
 4. 对密码的安全等级进行验证jquery
 ## 图片加工
-## 图片上传 6/8
+## 图片上传 
+
+
 
 
 ## 管理系统

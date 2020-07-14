@@ -195,8 +195,7 @@
                         <h1>我的账户</h1>
                      </div>
                      <div class="widget-body">
-
-                       <!-- <form enctype="multipart/form-data" action="/server/servlet/UserAvatarUpdate" method="post">-->  <!--action="/server/servlet/UserUpdate"  -->
+                      <form enctype="multipart/form-data" action="/server/UserOp/updateAvatar.do" method="post">
                             <div class="row">
                               <div class="col-sm-6">
                                  <div class="form-group">
@@ -258,11 +257,11 @@
                            <div class="form-group margin-bottom-none">
                               <div class="text-right">
 
-                                 <button class="btn btn-success" type="submit" onclick="saveUpdate()" id="saveSettings"><i class="fa fa-save"></i> 保存修改</button><!--"  -->
+                                 <button class="btn btn-success" type="submit" onclick="saveUpdate()"><i class="fa fa-save"></i> 保存修改</button><!--"  -->
                                  <button class="btn bstn-danger" type="submit" onclick="cleanForm()"><i class="fa fa-close"></i> 取消</button>
                               </div>
                            </div>
-                      <!--  </form>-->
+                       </form>
                      </div>
                   </div>
                </div>
