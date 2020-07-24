@@ -18,5 +18,5 @@ public interface UserService {
     //登录用户
     ResoultOfUser UserLoginVertify(User user);
     //修改用户信息
-    ResoultOfUser UpdateUserMessage(User user);
+    ResoultOfUser updateUserMessage(User user);
 }

@@ -137,9 +137,9 @@ function saveUpdate(){//更新用户设置
 			},
 			success:function(msg){
 				var result=JSON.parse(msg);
-				if (result.success){
-					alert("用户文字信息更新成功");
-				}
+				// if (result.success){
+				// 	alert("用户文字信息更新成功");
+				// }
 
 			},
 			error: function(e) {

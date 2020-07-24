@@ -4,8 +4,6 @@ package service;
 import dao.UserDao;
 import entity.ResoultOfUser;
 import entity.User;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import util.ReadCookie;
 import util.UpdateCookie;
@@ -65,17 +63,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResoultOfUser UpdateUserMessage(User user) {
+    public ResoultOfUser updateUserMessage(User user) {
         ResoultOfUser resoultOfUser=new ResoultOfUser();
         int flag=0;
         resoultOfUser.setUser(user);
-        flag=userDao.UpdateUserMessage(user);
+        flag=userDao.updateUserMessage(user);
         if (flag==1){
             resoultOfUser.success=true;
         }else {
             resoultOfUser.setMsg("本次用户信息更新失败");
         }
-
         return resoultOfUser;
     }
 

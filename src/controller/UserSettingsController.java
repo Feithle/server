@@ -37,7 +37,7 @@ public class UserSettingsController {
     public void updateMessage(User user ,HttpServletResponse response ){
         System.out.println(user);
         ResoultOfUser resoultOfUser=new ResoultOfUser();
-        resoultOfUser=userService.UpdateUserMessage(user);
+        resoultOfUser=userService.updateUserMessage(user);
         //输出
         String resultJson = JSONObject.toJSONString(resoultOfUser);
         try {
@@ -52,7 +52,7 @@ public class UserSettingsController {
      * @param request
      */
     @RequestMapping("/updateAvatar.do")
-    public void updateAvatar(HttpServletRequest request){
+    public String updateAvatar(HttpServletRequest request){
         //请求到达controller
         Avatar avatar=new Avatar();
         int userid=readCookie.getCoolieInBrowser(request).getUser_id();
@@ -64,7 +64,8 @@ public class UserSettingsController {
         //输出path
         System.out.println("头像保存路径： "+path);
         //保存图片存储路径
-
+        System.out.println(imgService.savePathAvatarPath(userid,path));
         //控制页面的跳转
+        return "forward:/index.jsp";
     }
 }
