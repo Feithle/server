@@ -28,13 +28,16 @@ public class UserSettingsController {
     @Resource
     private ReadCookie readCookie;
 
+    /**
+     * 保存用户的更新的文字信息
+     * @param user
+     * @param response
+     */
     @RequestMapping("/updateMessage.do")
     public void updateMessage(User user ,HttpServletResponse response ){
-
+        System.out.println(user);
         ResoultOfUser resoultOfUser=new ResoultOfUser();
-        resoultOfUser.setUser(user);
-        resoultOfUser.setSuccess(true);
-        resoultOfUser.setMsg("后台已经收到了修改用户信息表单里的文字信息");
+        resoultOfUser=userService.UpdateUserMessage(user);
         //输出
         String resultJson = JSONObject.toJSONString(resoultOfUser);
         try {
@@ -44,7 +47,10 @@ public class UserSettingsController {
         }
     }
 
-
+    /**
+     * 保存用户头像
+     * @param request
+     */
     @RequestMapping("/updateAvatar.do")
     public void updateAvatar(HttpServletRequest request){
         //请求到达controller
@@ -57,7 +63,8 @@ public class UserSettingsController {
         String path=imgService.saveAvatar(avatar);
         //输出path
         System.out.println("头像保存路径： "+path);
-        // 获取用户id
-        //保存图并返回图片存储路径
+        //保存图片存储路径
+
+        //控制页面的跳转
     }
 }

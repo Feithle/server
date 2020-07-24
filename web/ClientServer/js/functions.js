@@ -137,7 +137,10 @@ function saveUpdate(){//更新用户设置
 			},
 			success:function(msg){
 				var result=JSON.parse(msg);
-				console.log("文字上传方法被调用了 ，"+result.msg);
+				if (result.success){
+					alert("用户文字信息更新成功");
+				}
+
 			},
 			error: function(e) {
 				console.log("文字上传方法返回错误")

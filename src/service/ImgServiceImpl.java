@@ -4,10 +4,12 @@ import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.ParamPart;
 import com.oreilly.servlet.multipart.Part;
+import dao.ImgDao;
 import entity.Avatar;
 import entity.Picture;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 @Service
 public class ImgServiceImpl implements ImgService{
+    @Resource
+    private ImgDao imgDao;
     @Override
     public String saveAvatar(Avatar avatar) {
         //以map形式保存数据 key对应保存的是获取界面上的name名称 value保存的是获取界面上的name对应的值
@@ -67,6 +71,16 @@ public class ImgServiceImpl implements ImgService{
             e.printStackTrace();
         }
         return map.get("newFile");
+    }
+
+    @Override
+    public String savePathAvatarPath(int user_id, String avatar_path) {
+        int flag=0;
+        flag=imgDao.updateUserAvatarPath(user_id,avatar_path);
+        if (flag==1){
+            return "数据库中的头像存储路径更新成功";
+        }
+        return  "数据库中的头像存储路径更新失败";
     }
 
     @Override

@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserService {
     //添加用户
-    public void regist(String email, String password);
+    void regist(String email, String password);
     //根据id返回完整用户
-    public User getUserByEmail(String email);
+    User getUserByEmail(String email);
     //更新cookie
-    public void updateCookies(User user, HttpServletResponse response);
+    void updateCookies(User user, HttpServletResponse response);
     //读取cookie,返回一个user
-    public User fillInputTag( HttpServletRequest request);
+    User fillInputTag( HttpServletRequest request);
     //登录用户
-    public ResoultOfUser UserLoginVertify(User user);
+    ResoultOfUser UserLoginVertify(User user);
+    //修改用户信息
+    ResoultOfUser UpdateUserMessage(User user);
 }

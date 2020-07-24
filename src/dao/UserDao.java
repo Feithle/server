@@ -1,6 +1,8 @@
 package dao;
 
+import entity.ResoultOfUser;
 import entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
 
@@ -9,9 +11,12 @@ import java.util.ArrayList;
  */
 public interface UserDao {
     //添加用户
-    public void add(User user);
+    void add(User user);
     //根据email查询用户
-    public User quarryUser(String email);
+    User quarryUser(String email);
     //判断邮箱是否存在
-    public boolean vertifyEmail(String email);
+    boolean vertifyEmail(String email);
+    //根据用户id更新用户文字信息
+    int updateUserMessage(User user);
+
 }

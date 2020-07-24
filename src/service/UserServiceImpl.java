@@ -64,5 +64,20 @@ public class UserServiceImpl implements UserService{
         return resoultOfUser;
     }
 
+    @Override
+    public ResoultOfUser UpdateUserMessage(User user) {
+        ResoultOfUser resoultOfUser=new ResoultOfUser();
+        int flag=0;
+        resoultOfUser.setUser(user);
+        flag=userDao.UpdateUserMessage(user);
+        if (flag==1){
+            resoultOfUser.success=true;
+        }else {
+            resoultOfUser.setMsg("本次用户信息更新失败");
+        }
+
+        return resoultOfUser;
+    }
+
 
 }
