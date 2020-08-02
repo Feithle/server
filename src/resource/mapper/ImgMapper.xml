@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.ImgDao">
+    <update id="updateUserAvatarPath" parameterType="entity.User">
+        update table user_table set path_avatar=#{path_avatar} where user_id=#{user_id}
+    </update>
+</mapper>
+
+

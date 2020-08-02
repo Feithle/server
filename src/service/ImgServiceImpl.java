@@ -74,9 +74,9 @@ public class ImgServiceImpl implements ImgService{
     }
 
     @Override
-    public String savePathAvatarPath(int user_id, String avatar_path) {
+    public String savePathAvatarPath(int user_id, String path_avatar) {
         int flag=0;
-        flag=imgDao.updateUserAvatarPath(user_id,avatar_path);
+        flag=imgDao.updateUserAvatarPath(user_id,path_avatar);
         if (flag==1){
             return "数据库中的头像存储路径更新成功";
         }

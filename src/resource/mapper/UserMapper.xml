@@ -18,8 +18,7 @@
     <update id="UpdateUserMessage" parameterType="entity.User">
         update table user_table set phone=#{phone},address=#{address},password=#{password} where user_id=#{user_id}
     </update>
-    <update id="updateUserMessage" parameterType="entity.User">
-        update table user_table setpath_avatar=#{path_avatar} where user_id=#{user_id}
-    </update>
-
 </mapper>
+
+
+
